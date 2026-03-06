@@ -1,0 +1,874 @@
+/* ==========================================================================
+   NeonWait — Main Stylesheet
+   Author: NeonWait
+   Version: 1.0.0
+   Description: Animated Coming Soon / Maintenance HTML Template
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties (Design Tokens)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Primary Palette */
+  --color-bg:            #0a0a0f;
+  --color-bg-secondary:  #12121a;
+  --color-surface:       #1a1a2e;
+  --color-surface-light: #25253d;
+  --color-text:          #e0e0e8;
+  --color-text-muted:    #8888a0;
+  --color-text-heading:  #ffffff;
+
+  /* Neon Colors */
+  --neon-primary:   #00f0ff;
+  --neon-secondary: #7b2dff;
+  --neon-accent:    #ff00aa;
+  --neon-success:   #00ff88;
+  --neon-warning:   #ffaa00;
+
+  /* Neon RGB values for rgba() */
+  --neon-primary-rgb:   0, 240, 255;
+  --neon-secondary-rgb: 123, 45, 255;
+  --neon-accent-rgb:    255, 0, 170;
+
+  /* Typography */
+  --font-primary:   'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-heading:   'Space Grotesk', 'Inter', sans-serif;
+  --font-mono:      'JetBrains Mono', 'Fira Code', monospace;
+
+  --fs-xs:   0.75rem;    /* 12px */
+  --fs-sm:   0.875rem;   /* 14px */
+  --fs-base: 1rem;       /* 16px */
+  --fs-md:   1.125rem;   /* 18px */
+  --fs-lg:   1.25rem;    /* 20px */
+  --fs-xl:   1.5rem;     /* 24px */
+  --fs-2xl:  2rem;       /* 32px */
+  --fs-3xl:  2.5rem;     /* 40px */
+  --fs-4xl:  3.5rem;     /* 56px */
+  --fs-5xl:  4.5rem;     /* 72px */
+  --fs-hero: clamp(2.5rem, 6vw, 5.5rem);
+
+  --fw-light:    300;
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+  --fw-black:    900;
+
+  --lh-tight:  1.1;
+  --lh-snug:   1.3;
+  --lh-normal: 1.6;
+  --lh-loose:  1.8;
+
+  --ls-tight:  -0.02em;
+  --ls-normal: 0;
+  --ls-wide:   0.05em;
+  --ls-wider:  0.1em;
+  --ls-widest: 0.2em;
+
+  /* Spacing */
+  --space-xs:  0.25rem;
+  --space-sm:  0.5rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  --space-5xl: 8rem;
+
+  /* Border Radius */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm:   0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md:   0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg:   0 8px 30px rgba(0, 0, 0, 0.6);
+  --shadow-neon: 0 0 20px rgba(var(--neon-primary-rgb), 0.3);
+
+  /* Transitions */
+  --transition-fast:   0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow:   0.5s ease;
+
+  /* Z-Index Scale */
+  --z-behind:  -1;
+  --z-base:    1;
+  --z-above:   10;
+  --z-modal:   100;
+  --z-overlay: 1000;
+  --z-top:     9999;
+
+  /* Container */
+  --container-max: 1200px;
+  --container-sm:  640px;
+  --container-md:  768px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Base / Reset Additions
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-normal);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(var(--neon-primary-rgb), 0.3);
+  color: var(--color-text-heading);
+}
+
+a {
+  color: var(--neon-primary);
+  text-decoration: none;
+  transition: color var(--transition-normal), text-shadow var(--transition-normal);
+}
+
+a:hover,
+a:focus {
+  color: var(--neon-accent);
+  text-shadow: 0 0 8px rgba(var(--neon-accent-rgb), 0.6);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   3. Typography
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-text-heading);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  margin: 0 0 var(--space-md);
+}
+
+.heading-hero {
+  font-size: var(--fs-hero);
+  font-weight: var(--fw-black);
+  letter-spacing: var(--ls-tight);
+  line-height: 1;
+}
+
+.heading-sub {
+  font-size: clamp(var(--fs-md), 2.5vw, var(--fs-xl));
+  font-weight: var(--fw-regular);
+  color: var(--color-text-muted);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+.text-neon {
+  color: var(--neon-primary);
+  text-shadow:
+    0 0 7px  var(--neon-primary),
+    0 0 10px var(--neon-primary),
+    0 0 21px var(--neon-primary),
+    0 0 42px var(--neon-accent);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary), var(--neon-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.text-center { text-align: center; }
+.text-uppercase {
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wider);
+}
+
+/* --------------------------------------------------------------------------
+   4. Layout
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+}
+
+.container--sm { max-width: var(--container-sm); }
+.container--md { max-width: var(--container-md); }
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  z-index: var(--z-base);
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3xl) 0;
+}
+
+/* --------------------------------------------------------------------------
+   5. Background Effects
+   -------------------------------------------------------------------------- */
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-behind);
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(var(--neon-secondary-rgb), 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(var(--neon-primary-rgb), 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(var(--neon-accent-rgb), 0.04) 0%, transparent 50%),
+    var(--color-bg);
+  pointer-events: none;
+}
+
+.bg-noise {
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: var(--z-behind);
+  background-image: url('../img/bg/noise.png');
+  background-repeat: repeat;
+  opacity: 0.03;
+  pointer-events: none;
+  animation: noiseScroll 8s steps(10) infinite;
+}
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-behind);
+  background-image:
+    linear-gradient(rgba(var(--neon-primary-rgb), 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--neon-primary-rgb), 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.bg-particles {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-behind);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: var(--neon-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--neon-primary), 0 0 12px var(--neon-primary);
+  animation: floatParticle var(--duration, 8s) var(--delay, 0s) infinite;
+}
+
+/* --------------------------------------------------------------------------
+   6. Header
+   -------------------------------------------------------------------------- */
+.site-header {
+  padding: var(--space-lg) 0;
+  position: relative;
+  z-index: var(--z-above);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.logo img,
+.logo svg {
+  height: 40px;
+  width: auto;
+}
+
+.logo-text {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-text-heading);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+.logo-text .neon {
+  color: var(--neon-primary);
+  text-shadow: 0 0 10px var(--neon-primary), 0 0 20px var(--neon-primary);
+}
+
+/* --------------------------------------------------------------------------
+   7. Hero Section
+   -------------------------------------------------------------------------- */
+.hero {
+  text-align: center;
+  padding: var(--space-2xl) 0;
+}
+
+.hero__badge {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-lg);
+  border: 1px solid rgba(var(--neon-primary-rgb), 0.3);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--neon-primary);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  margin-bottom: var(--space-xl);
+  background: rgba(var(--neon-primary-rgb), 0.05);
+  backdrop-filter: blur(4px);
+}
+
+.hero__title {
+  margin-bottom: var(--space-lg);
+}
+
+.hero__description {
+  font-size: clamp(var(--fs-base), 2vw, var(--fs-lg));
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto var(--space-2xl);
+  line-height: var(--lh-loose);
+}
+
+/* --------------------------------------------------------------------------
+   8. Countdown Timer
+   -------------------------------------------------------------------------- */
+.countdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin: var(--space-2xl) 0;
+  flex-wrap: wrap;
+}
+
+.countdown__block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 90px;
+  padding: var(--space-lg) var(--space-xl);
+  background: rgba(var(--neon-primary-rgb), 0.04);
+  border: 1px solid rgba(var(--neon-primary-rgb), 0.15);
+  border-radius: var(--radius-lg);
+  position: relative;
+  backdrop-filter: blur(10px);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.countdown__block:hover {
+  border-color: rgba(var(--neon-primary-rgb), 0.4);
+  box-shadow: 0 0 20px rgba(var(--neon-primary-rgb), 0.1);
+}
+
+.countdown__number {
+  font-family: var(--font-heading);
+  font-size: var(--fs-4xl);
+  font-weight: var(--fw-black);
+  color: var(--color-text-heading);
+  line-height: 1;
+  min-width: 1.5ch;
+  text-align: center;
+}
+
+.countdown__label {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-widest);
+  margin-top: var(--space-sm);
+}
+
+.countdown__separator {
+  font-size: var(--fs-3xl);
+  font-weight: var(--fw-bold);
+  color: var(--neon-primary);
+  line-height: 1;
+  padding-bottom: var(--space-lg);
+  animation: neonPulse 2s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   9. Newsletter / Subscribe Form
+   -------------------------------------------------------------------------- */
+.subscribe-form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-group {
+  display: flex;
+  gap: var(--space-sm);
+  position: relative;
+}
+
+.form-group input[type="email"] {
+  flex: 1;
+  padding: var(--space-md) var(--space-lg);
+  background: rgba(var(--neon-primary-rgb), 0.05);
+  border: 1px solid rgba(var(--neon-primary-rgb), 0.2);
+  border-radius: var(--radius-full);
+  color: var(--color-text);
+  font-size: var(--fs-base);
+  outline: none;
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.form-group input[type="email"]::placeholder {
+  color: var(--color-text-muted);
+}
+
+.form-group input[type="email"]:focus {
+  border-color: var(--neon-primary);
+  box-shadow: 0 0 0 3px rgba(var(--neon-primary-rgb), 0.15),
+              0 0 15px rgba(var(--neon-primary-rgb), 0.1);
+}
+
+.form-message {
+  margin-top: var(--space-sm);
+  font-size: var(--fs-sm);
+  text-align: center;
+}
+
+.form-message.success {
+  color: var(--neon-success);
+}
+
+.form-message.error {
+  color: var(--neon-accent);
+}
+
+/* --------------------------------------------------------------------------
+   10. Buttons
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  font-family: var(--font-primary);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition:
+    background var(--transition-normal),
+    box-shadow var(--transition-normal),
+    transform var(--transition-fast);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
+  color: var(--color-bg);
+  box-shadow: 0 0 20px rgba(var(--neon-primary-rgb), 0.3);
+}
+
+.btn--primary:hover {
+  box-shadow: 0 0 30px rgba(var(--neon-primary-rgb), 0.5),
+              0 0 60px rgba(var(--neon-primary-rgb), 0.2);
+  color: var(--color-bg);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--neon-primary);
+  border: 2px solid var(--neon-primary);
+  box-shadow: 0 0 10px rgba(var(--neon-primary-rgb), 0.15);
+}
+
+.btn--outline:hover {
+  background: rgba(var(--neon-primary-rgb), 0.1);
+  box-shadow: 0 0 20px rgba(var(--neon-primary-rgb), 0.3);
+  color: var(--neon-primary);
+}
+
+.btn--ghost {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-text);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--color-text-heading);
+}
+
+.btn--sm {
+  padding: var(--space-sm) var(--space-lg);
+  font-size: var(--fs-sm);
+}
+
+.btn--lg {
+  padding: var(--space-lg) var(--space-2xl);
+  font-size: var(--fs-md);
+}
+
+/* --------------------------------------------------------------------------
+   11. Social Links
+   -------------------------------------------------------------------------- */
+.social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin: var(--space-xl) 0;
+}
+
+.social-links__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(var(--neon-primary-rgb), 0.2);
+  border-radius: var(--radius-full);
+  color: var(--color-text-muted);
+  transition:
+    color var(--transition-normal),
+    border-color var(--transition-normal),
+    box-shadow var(--transition-normal),
+    transform var(--transition-fast);
+}
+
+.social-links__item:hover {
+  color: var(--neon-primary);
+  border-color: var(--neon-primary);
+  box-shadow: 0 0 15px rgba(var(--neon-primary-rgb), 0.3);
+  transform: translateY(-2px);
+  text-shadow: none;
+}
+
+.social-links__item svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* --------------------------------------------------------------------------
+   12. Progress Bar (Under Construction)
+   -------------------------------------------------------------------------- */
+.progress-section {
+  max-width: 500px;
+  margin: var(--space-2xl) auto;
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(var(--neon-primary-rgb), 0.1);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin: var(--space-md) 0;
+}
+
+.progress-bar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--neon-primary), var(--neon-secondary));
+  border-radius: var(--radius-full);
+  width: 0;
+  animation: progressBar 2s var(--ease-neon) 0.5s forwards;
+  position: relative;
+}
+
+.progress-bar__fill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background: var(--neon-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--neon-primary), 0 0 20px var(--neon-primary);
+}
+
+.progress-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--neon-primary);
+  margin-top: var(--space-sm);
+}
+
+/* --------------------------------------------------------------------------
+   13. Info Cards
+   -------------------------------------------------------------------------- */
+.info-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-2xl) 0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.info-card {
+  padding: var(--space-xl);
+  background: rgba(var(--neon-primary-rgb), 0.03);
+  border: 1px solid rgba(var(--neon-primary-rgb), 0.1);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  transition: border-color var(--transition-normal), transform var(--transition-normal);
+}
+
+.info-card:hover {
+  border-color: rgba(var(--neon-primary-rgb), 0.3);
+  transform: translateY(-4px);
+}
+
+.info-card__icon {
+  font-size: var(--fs-3xl);
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.info-card__title {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-heading);
+  margin-bottom: var(--space-sm);
+}
+
+.info-card__text {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  line-height: var(--lh-loose);
+}
+
+/* --------------------------------------------------------------------------
+   14. Contact Section (Maintenance page)
+   -------------------------------------------------------------------------- */
+.contact-section {
+  margin: var(--space-2xl) auto;
+  max-width: 500px;
+  text-align: center;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  text-align: left;
+}
+
+.contact-form label {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  background: rgba(var(--neon-primary-rgb), 0.05);
+  border: 1px solid rgba(var(--neon-primary-rgb), 0.15);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-size: var(--fs-base);
+  font-family: var(--font-primary);
+  outline: none;
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--neon-primary);
+  box-shadow: 0 0 0 3px rgba(var(--neon-primary-rgb), 0.1);
+}
+
+.contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* --------------------------------------------------------------------------
+   15. Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  padding: var(--space-lg) 0;
+  text-align: center;
+  position: relative;
+  z-index: var(--z-above);
+}
+
+.site-footer::before {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(var(--neon-primary-rgb), 0.3), transparent);
+  margin: 0 auto var(--space-lg);
+}
+
+.footer-text {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+.footer-text a {
+  color: var(--neon-primary);
+}
+
+/* --------------------------------------------------------------------------
+   16. Utility Classes
+   -------------------------------------------------------------------------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+.mt-sm { margin-top: var(--space-sm); }
+.mt-md { margin-top: var(--space-md); }
+.mt-lg { margin-top: var(--space-lg); }
+.mt-xl { margin-top: var(--space-xl); }
+.mb-sm { margin-bottom: var(--space-sm); }
+.mb-md { margin-bottom: var(--space-md); }
+.mb-lg { margin-bottom: var(--space-lg); }
+.mb-xl { margin-bottom: var(--space-xl); }
+
+/* --------------------------------------------------------------------------
+   17. Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+
+/* Tablet */
+@media (max-width: 768px) {
+  :root {
+    --fs-hero: clamp(2rem, 8vw, 3.5rem);
+  }
+
+  .container {
+    padding: 0 var(--space-lg);
+  }
+
+  .countdown {
+    gap: var(--space-sm);
+  }
+
+  .countdown__block {
+    min-width: 70px;
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .countdown__number {
+    font-size: var(--fs-2xl);
+  }
+
+  .countdown__separator {
+    font-size: var(--fs-xl);
+    padding-bottom: var(--space-md);
+  }
+
+  .form-group {
+    flex-direction: column;
+  }
+
+  .info-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: var(--space-lg) 0;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-md);
+  }
+
+  .countdown__block {
+    min-width: 60px;
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .countdown__number {
+    font-size: var(--fs-xl);
+  }
+
+  .countdown__label {
+    font-size: 0.625rem;
+  }
+
+  .social-links {
+    gap: var(--space-sm);
+  }
+
+  .social-links__item {
+    width: 38px;
+    height: 38px;
+  }
+
+  .btn--lg {
+    padding: var(--space-md) var(--space-xl);
+    font-size: var(--fs-base);
+  }
+}
